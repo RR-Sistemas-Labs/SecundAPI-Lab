@@ -1,0 +1,46 @@
+name: Develop (Simulated Deploy)
+
+on:
+  push:
+    branches: [ develop ]
+
+permissions:
+  contents: read
+  id-token: write
+
+env:
+  API_PROJECT: WebAPI/WebAPI.csproj
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore "$API_PROJECT"
+
+      - name: Publish (Release)
+        run: dotnet publish "$API_PROJECT" -c Release -o out
+
+      - name: Smoke test (placeholder)
+        shell: bash
+        run: |
+          set -e
+          if ! compgen -G "out/*.dll" > /dev/null; then
+            echo "Nada publicado em out/"
+            ls -la out || true
+            exit 1
+          fi
+          echo "OK: publicações encontradas:"
+          ls -la out | sed -n '1,200p'
+
+      - name: Upload artifact (staging bundle)
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-staging
+          path: out/
