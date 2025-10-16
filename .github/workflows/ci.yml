@@ -14,6 +14,7 @@ jobs:
   sanity:
     runs-on: ubuntu-latest
     steps:
+      - name: Say hello
         run: |
           echo "PR number: ${{ github.event.number }}"
           echo "Head: ${{ github.head_ref }}  ->  Base: ${{ github.base_ref }}"
