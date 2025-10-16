@@ -33,6 +33,29 @@
             "related": ".pdb;.xml"
           }
         }
+      },
+      "Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Domain.dll": {}
+        }
+      },
+      "Repository/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Repository.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Repository.dll": {}
+        }
       }
     }
   },
@@ -67,11 +90,23 @@
         "microsoft.openapi.1.6.17.nupkg.sha512",
         "microsoft.openapi.nuspec"
       ]
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
+    },
+    "Repository/1.0.0": {
+      "type": "project",
+      "path": "../Repository/Repository.csproj",
+      "msbuildProject": "../Repository/Repository.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-      "Microsoft.AspNetCore.OpenApi >= 9.0.9"
+      "Domain >= 1.0.0",
+      "Microsoft.AspNetCore.OpenApi >= 9.0.9",
+      "Repository >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -98,7 +133,14 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/rodrigoromanovski/Documents/RR sistemas/Projects/Labs/SecundAPI/SecundAPI-Lab/Domain/Domain.csproj": {
+              "projectPath": "/Users/rodrigoromanovski/Documents/RR sistemas/Projects/Labs/SecundAPI/SecundAPI-Lab/Domain/Domain.csproj"
+            },
+            "/Users/rodrigoromanovski/Documents/RR sistemas/Projects/Labs/SecundAPI/SecundAPI-Lab/Repository/Repository.csproj": {
+              "projectPath": "/Users/rodrigoromanovski/Documents/RR sistemas/Projects/Labs/SecundAPI/SecundAPI-Lab/Repository/Repository.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
