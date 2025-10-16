@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*.*.*'   # ex.: v1.0.0
 
+permissions:
+  contents: write  
+
 env:
   API_PROJECT: WebAPI/WebAPI.csproj
 
